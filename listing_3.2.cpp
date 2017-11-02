@@ -1,3 +1,4 @@
+#include <string>
 #include <mutex>
 
 class some_data
