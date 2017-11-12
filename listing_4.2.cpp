@@ -1,3 +1,5 @@
+#include <deque>
+
 template <class T, class Container = std::deque<T> >
 class queue {
 public:
@@ -14,7 +16,8 @@ public:
     void swap(queue&& q);
 
     bool empty() const;
-    size_type size() const;
+    //std::size_t size() const;
+    typename std::deque<T>::size_type size() const;
 
     T& front();
     const T& front() const;

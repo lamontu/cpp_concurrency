@@ -11,7 +11,7 @@ public:
     template <class Alloc> stack(stack&&, const Alloc&);
 
     bool empty() const;
-    size_t size() const;
+    std::size_t size() const;
     T& top();
     T const& top() const;
     void push(T const&);
