@@ -50,6 +50,7 @@ public:
             return false;
         value=data_queue.front();
         data_queue.pop();
+        return true;
     }
 
     std::shared_ptr<T> try_pop()
