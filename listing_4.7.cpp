@@ -3,8 +3,8 @@
 
 struct X
 {
-    void foo(int,std::string const&);
-    std::string bar(std::string const&);
+    void foo(int,std::string const&) {}
+    std::string bar(std::string const&) {}
 };
 
 
@@ -14,21 +14,29 @@ auto f2=std::async(&X::bar,x,"goodbye");
 
 struct Y
 {
-    double operator()(double);
+    double operator()(double) {}
 };
+
 Y y;
 auto f3=std::async(Y(),3.141);
 auto f4=std::async(std::ref(y),2.718);
-X baz(X&);
+
+X baz(X&) {}
+
 auto f6=std::async(baz,std::ref(x));
+
 class move_only
 {
 public:
-    move_only();
-    move_only(move_only&&);
+    move_only() {}
+    move_only(move_only&&) {}
     move_only(move_only const&) = delete;
-    move_only& operator=(move_only&&);
+    move_only& operator=(move_only&&) {}
     move_only& operator=(move_only const&) = delete;
-    void operator()();
+    void operator()() {}
 };
+
 auto f5=std::async(move_only());
+
+int main()
+{}
