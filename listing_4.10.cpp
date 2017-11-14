@@ -21,9 +21,12 @@ struct network_connection
 {
   data_packet incoming() const
   {
+    return data_packet();
   }
   std::promise<payload_type>& get_promise(int) const
   {
+    std::promise<payload_type> *prm = new std::promise<payload_type>();
+    return *prm;
   }
   bool has_incoming_data() const
   {
@@ -35,6 +38,7 @@ struct network_connection
   }
   outgoing_packet top_of_outgoing_queue() const
   {
+    return outgoing_packet(); 
   }
   void send(const payload_type&) const
   {
