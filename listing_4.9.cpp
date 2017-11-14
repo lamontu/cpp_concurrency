@@ -7,8 +7,13 @@
 std::mutex m;
 std::deque<std::packaged_task<void()> > tasks;
 
-bool gui_shutdown_message_received();
-void get_and_process_gui_message();
+bool gui_shutdown_message_received()
+{
+  return true;
+}
+
+void get_and_process_gui_message()
+{}
 
 void gui_thread()
 {
@@ -27,7 +32,7 @@ void gui_thread()
     }
 }
 
-std::thread gui_bg_thread(gui_thread);
+// std::thread gui_bg_thread(gui_thread);
 
 template<typename Func>
 std::future<void> post_task_for_gui_thread(Func f)
@@ -37,4 +42,13 @@ std::future<void> post_task_for_gui_thread(Func f)
     std::lock_guard<std::mutex> lk(m);
     tasks.push_back(std::move(task));
     return res;
+}
+
+int main()
+{
+  std::thread gui_bg_thread(gui_thread);
+
+  gui_bg_thread.join();
+
+  return 0;
 }
