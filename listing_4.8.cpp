@@ -1,8 +1,11 @@
 #include <future>
 #include <vector>
 
+namespace std
+{
+
 template<>
-class std::packaged_task<std::string(std::vector<char>*,int)>
+class packaged_task<std::string(std::vector<char>*,int)>
 {
 public:
     template<typename Callable>
@@ -10,6 +13,8 @@ public:
     std::future<std::string> get_future();
     void operator()(std::vector<char>*,int);
 };
+
+}
 
 int main()
 {}
