@@ -1,4 +1,55 @@
 #include <future>
+#include <set>
+
+struct payload_type
+{
+};
+
+struct outgoing_packet 
+{
+  payload_type payload;
+  std::promise<bool> promise;
+};
+
+struct data_packet
+{
+  int id;
+  payload_type payload;
+};
+
+struct network_connection
+{
+  data_packet incoming() const
+  {
+  }
+  std::promise<payload_type>& get_promise(int) const
+  {
+  }
+  bool has_incoming_data() const
+  {
+    return true;
+  }
+  bool has_outgoing_data() const
+  {
+    return true;
+  }
+  outgoing_packet top_of_outgoing_queue() const
+  {
+  }
+  void send(const payload_type&) const
+  {
+  }
+
+};
+
+typedef std::set<network_connection> connection_set;
+typedef std::set<network_connection>::iterator connection_iterator;
+
+bool done(const connection_set &connections)
+{
+  return false;
+}
+
 void process_connections(connection_set& connections)
 {
     while(!done(connections))
@@ -24,4 +75,9 @@ void process_connections(connection_set& connections)
             }
         }
     }
+}
+
+int main()
+{
+  return 0;
 }
