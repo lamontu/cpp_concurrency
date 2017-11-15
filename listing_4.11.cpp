@@ -16,3 +16,8 @@ bool wait_loop()
     }
     return done;
 }
+
+int main()
+{
+  return 0;
+}
