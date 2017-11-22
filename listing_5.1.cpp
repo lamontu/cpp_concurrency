@@ -1,3 +1,6 @@
+#include <atomic>
+#include <iostream>
+
 class spinlock_mutex
 {
     std::atomic_flag flag;
@@ -14,3 +17,15 @@ public:
         flag.clear(std::memory_order_release);
     }
 };
+
+int main()
+{
+    //bool bFlag {false};
+    //bool bFlag (false);
+    bool bFlag {(false)};
+    //bool bFlag ({false}); // Error
+    if (!bFlag) {
+        std::cout << "false" << std::endl;
+    }
+    return 0;
+}
