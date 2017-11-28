@@ -20,3 +20,13 @@ void writer_thread()
     data.push_back(42);
     data_ready=true;
 }
+
+int main()
+{
+    std::thread thr(reader_thread);
+    std::thread thw(writer_thread);
+
+    thw.join();
+    thr.join();
+    return 0;
+}
