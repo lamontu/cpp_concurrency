@@ -1,6 +1,7 @@
 #include <thread>
 #include <atomic>
 #include <iostream>
+#include <chrono>
 
 std::atomic<int> x(0),y(0),z(0);
 std::atomic<bool> go(false);
@@ -19,6 +20,7 @@ void increment(std::atomic<int>* var_to_inc,read_values* values)
 {
     while(!go)
         std::this_thread::yield();
+        //std::this_thread::sleep_for(std::chrono::seconds(1)); // Bad
     for(unsigned i=0;i<loop_count;++i)
     {
         values[i].x=x.load(std::memory_order_relaxed);
