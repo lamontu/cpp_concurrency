@@ -1,6 +1,7 @@
 #include <atomic>
 #include <thread>
 #include <assert.h>
+#include <iostream>
 
 std::atomic<bool> x,y;
 std::atomic<int> z;
@@ -42,5 +43,6 @@ int main()
     b.join();
     c.join();
     d.join();
+    std::cout << "z = " << z.load() << std::endl;
     assert(z.load()!=0);
 }
