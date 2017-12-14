@@ -1,3 +1,4 @@
+#include <vector>
 #include <atomic>
 #include <thread>
 
@@ -14,6 +15,14 @@ void populate_queue()
     }
     
     count.store(number_of_items,std::memory_order_release);
+}
+
+void wait_for_more_items()
+{
+}
+
+void process(int)
+{
 }
 
 void consume_queue_items()
