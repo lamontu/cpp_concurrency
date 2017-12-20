@@ -2,6 +2,7 @@
 #include <stack>
 #include <mutex>
 #include <memory>
+#include <iostream>
 
 struct empty_stack: std::exception
 {
@@ -54,3 +55,16 @@ public:
     }
 };
 
+int main()
+{
+    threadsafe_stack<int> mystack;
+    mystack.push(10);
+    mystack.push(20);
+
+    int val = 0;
+    mystack.pop(val);
+    std::cout << "mystack pop val: " << val << '\n';
+    std::cout << "mystack "<< (mystack.empty() ? "empty" : "not empty") << '\n';
+
+    return 0;
+}
