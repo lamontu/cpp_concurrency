@@ -66,3 +66,9 @@ public:
     }
 
 };
+
+int main()
+{
+    threadsafe_queue<int> que;
+    return 0;
+}
